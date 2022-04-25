@@ -2,7 +2,8 @@
 # Кастомные правила для SwiftLint
 Подборка полезных дополнительных правил для [SwiftLint](https://github.com/realm/SwiftLint#defining-custom-rules).  
 Не все правила подходят для всех архитектур и подходов, поэтому используйте только при необходимости.  
-Правила совместимы со [Swift Guideline](https://github.com/ILYA-2606/SwiftGuideline)
+Правила совместимы со [Swift Guideline](https://github.com/ILYA-2606/SwiftGuideline).  
+Пример готового [файла](https://github.com/ILYA-2606/SwiftLintCustomRules/blob/main/.swiftlint.yml) настроек SwiftLint.
 
 ## Использование кириллицы в названии файлов
 Помогает найти случайную опечатку
