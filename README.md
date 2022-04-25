@@ -160,7 +160,7 @@ custom_empty_string:
 + if id.isEmpty {
 ```
 
-## Разворачивание self
+## Разворачивание `self`
 ```yml
 custom_guard_self:
   name: "Неверное использование guard let self = self"
@@ -174,6 +174,7 @@ custom_guard_self:
 ```
 
 ## Неверное создание массива
+Мы рекомендуем создавать массивы в читаемом виде
 ```yml
 custom_array_Type:
   name: "Неверное создание массива"
@@ -186,7 +187,7 @@ custom_array_Type:
 + var array: [Type] = []
 ```
 
-## Избыточное условие Optional chaining для Bool
+## Избыточное условие Optional chaining для `Bool`
 ```yml
 custom_boolean_redundant_condition:
   name: "Optional chaining для Bool запрещен"
@@ -200,7 +201,7 @@ var isEnabled: Bool?
 + if isEnabled == true {
 ```
 
-## Избыточное условие для Bool
+## Избыточное условие для `Bool`
 ```yml
 custom_boolean_clear_condition:
   name: "Переусложненное условие"
@@ -230,7 +231,7 @@ custom_documentation_ticks:
 + /// Класс использует `URL`
 ```
 
-## Избыточный возврат Bool из тернарного оператора
+## Избыточный возврат `Bool` из тернарного оператора
 ```yml
 custom_boolean_in_ternar_return:
   name: "Возврат Bool из тернарного оператора"
@@ -243,7 +244,7 @@ custom_boolean_in_ternar_return:
 + return isEnabled
 ```
 
-## Использование `unowned`
+## Использование `unowned` запрещено
 ```yml
 custom_unowned:
   name: "Использование unowned запрещено"
@@ -303,10 +304,10 @@ custom_array_line_breaks:
 + ]
 ```
 
-## Названия замыканий
+## Замыкание должно иметь суффикс `Handler`
 ```yml
 custom_handler_names:
-  name: "Названия замыканий"
+  name: "Название замыкания не содержит суффикс Handler"
   regex: "(var|let) \\w+(Action|Block): (\\(|\\w+(Action|Handler))"
   message: "Замыкание должно иметь суффикс Handler"
   severity: error
@@ -329,7 +330,7 @@ custom_forced_handlers:
 + var handler: Handler?
 ```
 
-## Литералы цвета
+## Литералы цвета запрещены
 ```yml
 custom_color_literal:
   name: "Литералы цвета запрещены"
@@ -356,7 +357,7 @@ custom_objc_inline:
 + @objc func myMethod()
 ```
 
-## Использовать хардкод для текста в Presentation запрещено
+## Использовать хардкод для текста в Presentation-слое запрещено
 Требуется выделение Presentation-слоя
 Правило подходит, если у вас вынесены текста. Мы рекомендуем использовать для этого [SwiftGen](https://github.com/SwiftGen/SwiftGen)
 ```yml
@@ -388,7 +389,7 @@ custom_doc:
 class MyClass {
 ```
 
-## Использование методов создания View без параметров
+## Использование методов создания `View` без параметров запрещено
 ```yml
 custom_void_parameters_method:
   name: "Использование методов создания View без параметров запрещено"
@@ -401,11 +402,11 @@ custom_void_parameters_method:
 + var button: some View {
 ```
 
-## Импорт по умолчанию
+## Импорт по умолчанию запрещен
 Требуется добавить файл Imports.swift с `@_exported import` стандартных библиотек
 ```yml
 custom_imports:
-  name: "Импорт по умолчанию"
+  name: "Импорт по умолчанию запрещен"
   excluded: "Imports.swift"
   regex: "import (Foundation|CoreGraphics|UIKit)"
   message: "Не используй импорт по умолчанию"
@@ -417,7 +418,7 @@ custom_imports:
 class UserView: UIView {
 ```
 
-## GeometryProxy должен иметь суффикс Proxy
+## GeometryProxy должен иметь суффикс `Proxy`
 ```yml
 custom_geometryproxy_name:
   name: "GeometryProxy должен иметь суффикс Proxy"
