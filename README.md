@@ -1,3 +1,4 @@
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 # Кастомные правила для SwiftLint
 Подборка полезных дополнительных правил для SwiftLint. Не все правила подходят для всех архитектур и подходов, поэтому используйте только при необходимости. Правила совместимы со [Swift Guideline](https://github.com/ILYA-2606/SwiftGuideline)
 
