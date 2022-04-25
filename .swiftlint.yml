@@ -1,0 +1,242 @@
+# Будет ошибка, если будут замечания
+warning_threshold: 1
+
+# Будет ошибка, если длина строки кода будет длиннее 120 символов
+line_length:
+  warning: 120
+  error: 120
+  ignores_urls: true
+  ignores_comments: true
+
+# Будет ошибка при принудительном разворачивании типа
+force_unwrapping:
+  error
+
+# Будет ошибка при принудительном касте типов
+force_cast:
+  error
+  
+# Ошибка при точке с запятой на конце
+trailing_semicolon:
+  error
+  
+# Будет ошибка при использовании лишних скобок
+control_statement:
+  error
+
+# Будет ошибка при лишнем указании getter-a
+implicit_getter:
+  error
+
+# Будет ошибка, если параметры метода многострочные, но не выравнены горизонтально
+vertical_parameter_alignment:
+  error
+
+# Будет ошибка при отсутствии нужных пробелов при указании возвращаемого значения
+return_arrow_whitespace:
+  error
+
+# Будет ошибка при лишнем упоминании неиспользуемых объектов
+unused_optional_binding:
+  error
+
+# Будет ошибка при указании уточненных типов массивов и словарей в устаревших форматах
+syntactic_sugar:
+  error
+
+# Кастомные правила
+custom_rules:
+  custom_cyrillic_file_name:
+    name: "Использование кириллицы в названии файлов запрещено"
+    regex: "[A-Za-z]*[ЁёА-я]+[A-Za-z]*(\\.swift)$"
+    message: "Проверь имя файла на наличие символов кириллицы"
+    match_kinds:
+      - comment
+    severity: error
+    
+  custom_cyrillic_code:
+    name: "Использование кириллицы вне комментариев, строк и документации запрещено"
+    regex: "[ЁёА-я]"
+    message: "Проверь название на содержание символов кириллицы"
+    match_kinds:
+      - argument
+      - identifier
+      - keyword
+      - parameter
+      - typeidentifier
+    severity: error 
+
+  custom_map_name:
+    name: "Словари должны именоваться с суффиксом Map"
+    regex: "(?<!(Map)|(map))(:| =) \\[\\w+: \\w+]( |,|\\))"
+    message: "Добавь суффикс Map"
+    severity: error
+
+  custom_set_name:
+    name: "Множества должны именоваться с суффиксом Set"
+    regex: "(?<!(Set)|(set))(((: Set<\\w+>(?!\\])([\\s]| *.)))| = Set<)"
+    message: "Добавь суффикс Set"
+    severity: error
+
+  custom_wrong_id:
+    name: "Неверное наименование идентификатора"
+    excluded: "path/to/DTO"
+    regex: "(var|let) \\w*Id( |:)"
+    message: "Используй ID"
+    severity: error
+
+  custom_wrong_url:
+    name: "Неверное наименование URL"
+    excluded: "path/to/DTO"
+    regex: "(var|let) \\w*Url( |:)"
+    message: "Используй URL"
+    severity: error
+
+  custom_dto_suffix:
+    name: "Модель DTO должна иметь суффикс 'DTO'"
+    included: "path/to/DTO"
+    regex: "(struct \\w*(?<!DTO):)|(struct (\\w*(?<!DTO)<))"
+    message: "Модель DTO должна иметь суффикс 'DTO'"
+    severity: error
+
+  custom_enum_suffix:
+    name: "Enum в DTO запрещены"
+    included: "path/to/DTO"
+    regex: "(enum (?!CodingKeys))"
+    message: "Используй enum в моделях"
+    severity: error
+
+  custom_void_return:
+    name: "Неверное использование Void"
+    regex: "([(](Void)?[)] ?-> ?Void)"
+    match_kinds:
+      - typeidentifier
+    message: "Используй '() -> ()'"
+    severity: error
+
+  custom_empty_string:
+    name: "Неверная проверка строки на пустоту"
+    regex: "( == \"\")|(== \"\")|( ==\"\")|(==\"\")|( != \"\")|(!= \"\")|( !=\"\")|(!=\"\")"
+    message: "Используй 'string.isEmpty'"
+    severity: error
+
+  custom_guard_self:
+    name: "Неверное использование guard let self = self"
+    regex: "guard\\s+let\\s+(((?!self).)\\S* = self[ ,]|`self` = self)"
+    message: "Используй 'guard let self = self'"
+    severity: error
+
+  custom_array_type:
+    name: "Неверное создание массива"
+    regex: "(var|let) \\w* = \\[\\w*\\]\\(\\)"
+    message: "var array: [Type] = []"
+    severity: error
+
+  custom_boolean_redundant_condition:
+    name: "Optional chaining для Bool запрещен"
+    regex: "(?? true)|(?? false)"
+    message: "Используй == true или == false"
+    severity: error
+
+  custom_boolean_clear_condition:
+    name: "Переусложненное условие"
+    regex: "^(?>(?!(as\\?)|(\\?.)).)*((!= true)|(!= false)).*$"
+    message: "Используй == true или == false или саму перeменную в качестве условия"
+    severity: error
+
+  custom_documentation_ticks:
+    name: "Неверный апостроф в документации"
+    regex: "´"
+    message: "Используй '`' вместо '´' для корректной работы документации."
+    match_kinds:
+      - comment
+      - doccomment
+    severity: error
+
+  custom_boolean_in_ternar_return:
+    name: "Возврат Bool из тернарного оператора"
+    regex: "\\? (true : false)|(false : true)"
+    message: "Не используй тернарный оператор для возврата Bool"
+    severity: error
+
+  custom_unowned:
+    name: "Использование unowned запрещено"
+    regex: "\\[unowned "
+    message: "Используй 'weak' вместо 'unowned'"
+    severity: error
+
+  custom_type_inferred_context:
+    name: "Лишнее указание типа"
+    regex: "^\\w* *((var)|(let)) \\w+\\:\\s(\\w+)\\s\\=\\s\\4"
+    message: "var a = Type()"
+    severity: error
+
+  custom_func_line_breaks:
+    name: "Переносы при вызове функции"
+    regex: "\\w+\\((\\w+: |)[\\w.|\\[\\]\":$%]+,$"
+    message: "Переносы строк необходимо делать согласно гайдлайну"
+    severity: error
+
+  custom_array_line_breaks:
+    name: "Переносы при многострочных массивах"
+    regex: "\\[[\\d\\w,.]+,$"
+    message: "Переносы строк для многострочных массивов необходимо делать согласно гайдлайну"
+    severity: error
+
+  custom_handler_names:
+    name: "Название замыкания не содержит суффикс Handler"
+    regex: "(var|let) \\w+(Action|Block): (\\(|\\w+(Action|Handler))"
+    message: "Замыкание должно иметь суффикс Handler"
+    severity: error
+
+  custom_forced_handlers:
+    name: "Force unwrapping для замыканий запрещен"
+    regex: "(var|let) \\w+: (\\(*\\w*\\)->\\(\\w*\\)*|\\w+(Action|Handler))!"
+    message: "Вместо var handler: Handler! используй var handler: Handler?"
+    severity: error
+
+  custom_color_literal:
+    name: "Литералы цвета запрещены"
+    regex: "#colorLiteral"
+    message: "Используй готовые цвета, добавленные в приложение"
+    severity: error
+
+  custom_objc_inline:
+    name: "Неверное написание @objc"
+    regex: "@objc\\n"
+    message: "Пиши @objc в одну строку"
+    severity: error
+
+  custom_texts:
+    name: "Использовать хардкод для текста в Presentation запрещено"
+    included: "path/to/Presentation"
+    regex: "\"[a-zA-Zа-яА-Я]"
+    message: "Используй структуру Texts"
+    match_kinds:
+      - string
+    severity: error
+
+  custom_doc:
+    name: "Отсутствует документация на неприватный интерфейс двумя строками ниже"
+    regex: "\\n\\n(public|open|struct|class|enum) (?!\\w+_Previews)"
+    message: "Добавь документацию через комбинацию клавиш CMD+OPTION+/"
+    severity: error
+
+  custom_void_parameters_method:
+    name: "Использование методов создания View без параметров запрещено"
+    regex: "\\(\\) -> some View \\{"
+    message: "Используй var вместо метода"
+    severity: error
+
+  custom_imports:
+    name: "Импорт по умолчанию запрещен"
+    excluded: "Imports.swift"
+    regex: "import (Foundation|CoreGraphics|UIKit)"
+    message: "Не используй импорт по умолчанию"
+    severity: error
+
+  custom_geometryproxy_name:
+    name: "GeometryProxy должен иметь суффикс Proxy"
+    regex: "GeometryReader \\{ \\w*(?<!(proxy)|(Proxy)) "
+    message: "Добавь суффикс Proxy"
+    severity: error
