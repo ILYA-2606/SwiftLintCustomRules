@@ -107,8 +107,8 @@ custom_dto_suffix:
   severity: error
 ```
 ```diff
-- struct UserDto {
-+ struct UserDTO {
+- struct UserDto: Decodable {
++ struct UserDTO: Decodable {
 ```
 
 ## Enum в DTO
@@ -122,7 +122,7 @@ custom_enum_suffix:
   severity: error
 ```
 ```diff
-struct UserDTO {
+struct UserDTO: Decodable {
 -  enum Status {
 -    case normal
 -    case blocked
