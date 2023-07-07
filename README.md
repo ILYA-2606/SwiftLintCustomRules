@@ -191,34 +191,6 @@ custom_array_type:
 + var array: [Type] = []
 ```
 
-## Избыточное условие Optional chaining для `Bool`
-```yml
-custom_boolean_redundant_condition:
-  name: "Optional chaining для Bool запрещен"
-  regex: "(?? true)|(?? false)"
-  message: "Используй == true или == false"
-  severity: error
-```
-```diff
-var isEnabled: Bool?
-- if isEnabled ?? true {
-+ if isEnabled == true {
-```
-
-## Избыточное условие для `Bool`
-```yml
-custom_boolean_clear_condition:
-  name: "Переусложненное условие"
-  regex: "^(?>(?!(as\\?)|(\\?.)).)*((!= true)|(!= false)).*$"
-  message: "Используй == true или == false или саму перeменную в качестве условия"
-  severity: error
-```
-```diff
-var isEnabled = true
-- if isEnabled != false {
-+ if isEnabled {
-```
-
 ## Неверный апостроф в документации
 ```yml
 custom_documentation_ticks:
